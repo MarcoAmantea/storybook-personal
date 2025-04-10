@@ -1,0 +1,73 @@
+/* Tabs.css */
+
+/* Variabili per la modalità light */
+:root {
+    --tabs-bg: #fff;
+    --tabs-text: #333;
+    --tabs-border: #ccc;
+    --tabs-active: #0070f3;
+    --tabs-hover: #f0f0f0;
+    --tabs-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Container principale */
+  .tabs-container {
+    max-width: 600px;
+    margin: 1rem auto;
+    font-family: 'Arial', sans-serif;
+    box-shadow: var(--tabs-shadow);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  /* Barra dei pulsanti */
+  .tab-buttons {
+    display: flex;
+    background-color: var(--tabs-bg);
+    border-bottom: 2px solid var(--tabs-border);
+  }
+  
+  /* Pulsanti */
+  .tab-button {
+    flex: 1;
+    padding: 12px;
+    background: var(--tabs-bg);
+    color: var(--tabs-text);
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+    border-right: 1px solid var(--tabs-border);
+  }
+  .tab-button:last-child {
+    border-right: none;
+  }
+  
+  .tab-button.active {
+    background-color: var(--tabs-active);
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  .tab-button:hover {
+    background-color: var(--tabs-hover);
+  }  
+  
+  /* Contenuto delle tab */
+  .tab-content {
+    background: var(--tabs-bg);
+    color: var(--tabs-text);
+    border: 1px solid var(--tabs-border);
+    border-top: none;
+    padding: 16px;
+  }
+  
+  /* Modalità Dark */
+  /* Quando viene applicata la classe "dark" al contenitore, ridefiniamo le variabili */
+  .dark {
+    --tabs-bg: #333;
+    --tabs-text: #ddd;
+    --tabs-border: #555;
+    --tabs-active: #1e90ff;
+    --tabs-hover: #444;
+    --tabs-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+  }

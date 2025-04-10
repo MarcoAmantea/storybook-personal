@@ -1,0 +1,27 @@
+/* index.css globale - supporta dark mode */
+
+:root {
+    --bg-light: #ffffff;
+    --bg-dark: #1e1e1e;
+    --text-light: #000000;
+    --text-dark: #ffffff;
+  }
+  
+  body {
+    background-color: var(--bg-light);
+    color: var(--text-light);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  body.dark {
+    background-color: var(--bg-dark);
+    color: var(--text-dark);
+  }
+  
+  /* Facoltativo: reset base */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
