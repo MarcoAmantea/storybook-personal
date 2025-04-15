@@ -1,0 +1,16 @@
+/* /Users/badrich/Desktop/story-book-def/storybook-definitivissimo/src/Style/Badge.css */
+.badge {
+    display: inline-block;
+    text-align: center;
+    /* Riduciamo leggermente il padding e il font-size per avere badge meno “lunghi” */
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  /* Hover semplice senza cambiare dimensioni */
+  .badge:hover {
+    opacity: 0.9;
+  }

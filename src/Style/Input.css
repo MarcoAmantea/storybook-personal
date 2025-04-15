@@ -1,0 +1,64 @@
+/* /src/Style/Input.css */
+
+.input-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: sans-serif;
+}
+
+/* Etichetta generica */
+.input-label {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* Campo testo */
+.input-text {
+  padding: 4px 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+/* Select */
+.input-select {
+  padding: 4px 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+/* Radio group su stessa riga delle opzioni */
+.input-radio-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Etichetta di ogni radio */
+.input-radio-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+
+/* Input radio */
+.input-radio {
+  margin: 0;
+}
+
+/* Aggiungi queste regole per il fieldset della radio group */
+fieldset.input-wrapper {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Se preferisci che l'elemento <legend> abbia uno styling simile alla label, ad esempio: */
+fieldset.input-wrapper > legend {
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+}

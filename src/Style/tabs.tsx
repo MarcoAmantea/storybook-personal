@@ -1,6 +1,6 @@
 // /Users/badrich/Desktop/story-book-def/storybook-definitivissimo/src/Style/Tabs.tsx
-import React, { useState, useRef } from "react";
-import "./Tabs.css";
+import React, { useState, useRef } from 'react';
+import './Tabs.css';
 
 interface TabData {
   label: string;
@@ -16,11 +16,8 @@ const Tabs: React.FC<TabsProps> = ({ tabs, defaultActive = 0 }) => {
   const [activeTab, setActiveTab] = useState(defaultActive);
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
-  const handleKeyDown = (
-    e: React.KeyboardEvent<HTMLButtonElement>,
-    index: number
-  ) => {
-    if (e.key === "Tab") {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>, index: number) => {
+    if (e.key === 'Tab') {
       e.preventDefault();
       const direction = e.shiftKey ? -1 : 1;
       const nextIndex = (index + direction + tabs.length) % tabs.length;
@@ -31,41 +28,27 @@ const Tabs: React.FC<TabsProps> = ({ tabs, defaultActive = 0 }) => {
 
   return (
     <div className="tabs-container">
-      <div
-        role="tablist"
-        aria-label="Navigazione schede"
-        className="tab-buttons"
-      >
+      {/* Aggiungiamo role="tablist" al contenitore dei pulsanti */}
+      <div className="tab-buttons" role="tablist">
         {tabs.map((tab, index) => (
           <button
             key={tab.label}
             ref={(el) => (tabRefs.current[index] = el)}
             onClick={() => setActiveTab(index)}
             onKeyDown={(e) => handleKeyDown(e, index)}
-            className={`tab-button ${index === activeTab ? "active" : ""}`}
+            className={`tab-button ${index === activeTab ? 'active' : ''}`}
             role="tab"
-            id={`tab-${index}`}
             aria-selected={index === activeTab}
-            aria-controls={`panel-${index}`}
+            aria-controls={`tabpanel-${index}`}
             tabIndex={index === activeTab ? 0 : -1}
           >
             {tab.label}
           </button>
         ))}
       </div>
-
-      {tabs.map((tab, index) => (
-        <div
-          key={tab.label}
-          id={`panel-${index}`}
-          role="tabpanel"
-          aria-labelledby={`tab-${index}`}
-          hidden={index !== activeTab}
-          className="tab-content"
-        >
-          {tab.content}
-        </div>
-      ))}
+      <div className="tab-content" role="tabpanel" id={`tabpanel-${activeTab}`}>
+        {tabs[activeTab].content}
+      </div>
     </div>
   );
 };

@@ -1,37 +1,51 @@
-import React from 'react';
+// /Users/badrich/Desktop/story-book-def/storybook-definitivissimo/src/Style/Badge.tsx
 
-// Definizione delle proprietà (props) che il componente Badge accetta
+import React from 'react';
+import './Badge.css';
+
+/** Proprietà supportate dal Badge */
 export interface BadgeProps {
   /** Testo da visualizzare all'interno del badge */
   text: string;
-  /** Colore di sfondo del badge (default: '#0070f3') */
+  /** Variante del badge: definisce i colori predefiniti */
+  variant?: 'default' | 'invertito' | 'positivo';
+  /** Colore di sfondo personalizzato (se omesso vengono usati i colori di variante) */
   backgroundColor?: string;
-  /** Colore del testo del badge (default: '#fff') */
+  /** Colore del testo personalizzato (se omesso vengono usati i colori di variante) */
   textColor?: string;
 }
 
-/**
- * Componente Badge: visualizza un badge con stile predefinito e personalizzabile.
- * Può essere utilizzato per mostrare etichette o stati particolari nell'interfaccia.
- */
+/** Componente Badge. Usa le varianti per impostare colori predefiniti o i props per override manuali. */
 export const Badge: React.FC<BadgeProps> = ({
   text,
-  backgroundColor = '#0070f0',
-  textColor = '#ffff',
+  variant = 'default',
+  backgroundColor,
+  textColor,
 }) => {
-  // Ensure no unreachable code exists before this return statement
+  let bg = backgroundColor;
+  let color = textColor;
+
+  // Se non sono forniti backgroundColor e textColor personalizzati,
+  // usiamo i colori predefiniti per la variante
+  if (!backgroundColor && !textColor) {
+    switch (variant) {
+      case 'invertito':
+        bg = '#ffffff';   // Sfondo bianco
+        color = '#00509e'; // Blu scuro
+        break;
+      case 'positivo':
+        bg = '#2e7d32';   // Verde profondo
+        color = '#ffffff'; // Bianco
+        break;
+      default:
+        bg = '#00509e';   // Blu scuro
+        color = '#ffffff'; // Bianco
+    }
+  }
+
   return (
-    <div
-      style={{
-        padding: '8px 16px',
-        borderRadius: '12px',
-        backgroundColor,
-        color: textColor,
-        fontWeight: 'bold',
-        display: 'inline-block',
-      }}
-    >
+    <span className="badge" style={{ backgroundColor: bg, color: color }}>
       {text}
-    </div>
+    </span>
   );
 };

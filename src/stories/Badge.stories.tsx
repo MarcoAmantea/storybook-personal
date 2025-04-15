@@ -1,79 +1,64 @@
-import { Meta, Story } from "@storybook/react";
-import { Badge, BadgeProps } from "../Style/Badge";
+// /Users/badrich/Desktop/story-book-def/storybook-definitivissimo/src/Style/Badge.stories.tsx
+import React from 'react';
+import { Meta, StoryObj } from '@storybook/react';
+import { Badge, BadgeProps } from '../Style/Badge'; // Percorso coerente con la localizzazione del file
+import '../Style/Badge.css';
 
-export default {
-  title: "Design System/Badge",
+const meta: Meta<BadgeProps> = {
+  title: 'Design System/Badge',
   component: Badge,
-  parameters: {
-    layout: "centered",
+  tags: ['autodocs'], // Abilita la generazione automatica della documentazione in Storybook 7+
+  argTypes: {
+    text: { control: 'text' },
+    variant: {
+      control: { type: 'select' },
+      options: ['default', 'invertito', 'positivo'],
+    },
+    backgroundColor: { control: { type: 'color' } },
+    textColor: { control: { type: 'color' } },
   },
   args: {
-    text: "Badge",
+    text: 'Badge',
+    variant: 'default',
   },
-  argTypes: {
-    text: { control: "text" },
-    variant: {
-      control: { type: "select" },
-      options: ["Default", "Invertito", "Positivo"],
-    },
+};
+export default meta;
+
+// Tipologia di Story
+type Story = StoryObj<BadgeProps>;
+
+// Story singola: Badge di default
+export const DefaultBadge: Story = {
+  args: {
+    text: 'Badge',
+    variant: 'default',
   },
-} as Meta<BadgeProps>;
+};
 
-// Story con tutti i badge (con contrasto migliorato)
-export const AllBadges: Story<BadgeProps> = (args) => {
-  const badgeColors = [
-    { name: "Primary", background: "black", text: "#ffffff" },
-    { name: "Danger", background: "#b71c1c", text: "#ffffff" },
-    { name: "Warning", background: "#ffc107", text: "#000000" }, // migliorato!
-    { name: "Info", background: "#0d47a1", text: "#ffffff" },    // migliorato!
-  ];
+// Story singola: Badge invertito
+export const InvertitoBadge: Story = {
+  args: {
+    text: 'Badge invertito',
+    variant: 'invertito',
+  },
+};
 
-  return (
-    <div
-      style={{
-        display: "flex",
-        flexWrap: "wrap",
-        gap: "16px",
-        justifyContent: "center",
-      }}
-    >
-      {badgeColors.map((badge, index) => (
-        <Badge
-          key={index}
-          text={args.text}
-          backgroundColor={badge.background}
-          textColor={badge.text}
-        />
-      ))}
+// Story singola: Badge positivo
+export const PositivoBadge: Story = {
+  args: {
+    text: 'Badge positivo',
+    variant: 'positivo',
+  },
+};
+
+// Story che li mostra tutti insieme in una riga o colonna
+export const AllBadges: Story = {
+  name: 'Docs',
+  render: () => (
+    <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+      <Badge text="Default" variant="default" />
+      <Badge text="Invertito" variant="invertito" />
+      <Badge text="Positivo" variant="positivo" />
     </div>
-  );
-};
-
-AllBadges.args = {
-  text: "Badge",
-};
-
-// Varianti dinamiche con miglior contrasto
-export const BadgeVariants: Story<BadgeProps> = (args) => {
-  const variantMap: Record<string, { background: string; text: string }> = {
-    Default: { background: "#0070f3", text: "#ffffff" },
-    Invertito: { background: "#ffffff", text: "#0070f3" },
-    Positivo: { background: "#28a745", text: "#ffffff" },
-  };
-
-  const { background, text } =
-    variantMap[args.variant as keyof typeof variantMap] || variantMap.Default;
-
-  return (
-    <Badge
-      text={args.text}
-      backgroundColor={background}
-      textColor={text}
-    />
-  );
-};
-
-BadgeVariants.args = {
-  text: "Badge",
-  variant: "Default",
+  ),
 };

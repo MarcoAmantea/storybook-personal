@@ -3,7 +3,7 @@ import type { StorybookConfig } from '@storybook/react-vite';
 const config: StorybookConfig = {
   "stories": [
     "../src/**/*.mdx",
-    "../src/**/*.stories.@(js|jsx|ts|tsx|mdx)"
+    "../src/**/*.stories.@(js|jsx|mjs|ts|tsx|mdx)"
   ],
   "addons": [
     "@storybook/addon-essentials",
@@ -13,7 +13,7 @@ const config: StorybookConfig = {
     '@storybook/addon-essentials',
     'storybook-dark-mode',
     '@storybook/addon-a11y',
-    '@storybook/addon-docs'
+    '@storybook/addon-docs',
   ],
   "framework": {
     "name": "@storybook/react-vite",
